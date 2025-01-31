@@ -1,140 +1,153 @@
-@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Yesteryear);
 
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+$app-background-color : #508ABB;
+$app-row-height : 100%;
+$winAnimStartColor : cyan;
+$winAnimEndColor : #508ABB;
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  font: 700 1em "News Cycle", sans-serif;
-  letter-spacing:.15em;
-	color: #ff6;
-	background: #000;
-	overflow: hidden;
-  margin: 0;
-}
+// html, body, div, span, a, li, td, th {
+// 	font-family: 'Lato', sans-serif;
+// 	font-weight: 300;
+//
+// }
 
-.starwars {
-  
-  section {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    z-index: 1;
-  } 
-
-  .start {
-    font-size: 200%;
-    $start-width: 14em;
-    width: $start-width;
-    margin: -4em 0 0 (- $start-width / 2);
-    text-align: center;
-    cursor: pointer;
-    
-    span {
-      color: rgb(75, 213, 238); 
-    }
-  }    
-  
-  .intro {
-    $intro-width: 15em;
-  	width: $intro-width;
-    margin: 0 0 0 (- $intro-width / 2);
-	  font-size: 200%;
-	  font-weight: 400;
-  	color: rgb(75, 213, 238);
-    opacity: 0;
-	  animation: intro 6s ease-out 1s;
+@-webkit-keyframes winAnim{
+	0% {
+    background-color: $winAnimStartColor;
   }
-  
-  .logo {
-    opacity: 0;
-    animation: logo 9s ease-out 9s; 
-    
-    svg {
-      width: inherit;
-    }
-  }
-  
-  .titles {
-    $titles-width: 14.65em;
-    width: $titles-width;
-    margin: 0 0 0 (- $titles-width / 2);
-    top: auto;
-    bottom: 0;
-  	height: 50em;
-  	font-size: 350%;
-  	text-align: justify;
-	  overflow: hidden;
-    transform-origin: 50% 100%;
-    @include transform(perspective(300px) rotateX(25deg));
-  
-    > div {
-	    position: absolute;
-	    top: 100%;
-	    animation: titles 81s linear 13s;
-    
-      > p {
-	      margin: 1.35em 0 1.85em 0;
-        line-height: 1.35em;
-        
-        @include backface-visibility(hidden);
-      }
-    }
+  100% {
+    background-color: $winAnimEndColor;
   }
 }
-
-@keyframes intro {
+@-moz-keyframes winAnim{
   0% {
-    opacity: 0;
-  }  
-	20% { 
-    opacity: 1; 
+    background-color: $winAnimStartColor;
   }
-	90% { 
-    opacity: 1; 
+  100% {
+    background-color: $winAnimEndColor;
   }
-	100% { 
-    opacity: 0;
+}
+@-o-keyframes winAnim {
+  0% {
+    background-color: $winAnimStartColor;
+  }
+  100% {
+    background-color: $winAnimEndColor;
+  }
+}
+@keyframes winAnim {
+  0% {
+    background-color: $winAnimStartColor;
+  }
+  100% {
+    background-color: $winAnimEndColor;
   }
 }
 
-@keyframes logo {
-	0% { 
-    $logo-width: 18em;
-  	width: $logo-width;
-    margin: (- $logo-width / 2) 0 0 (- $logo-width / 2);
-    
-    @include transform(scale(2.75)); 
-    opacity: 1; 
+@keyframes winAnim {
+  0% {
+    background-color: $winAnimStartColor;
   }
-	50% { 
-    opacity: 1; 
-    
-    $logo-width: 18em;
-  	width: $logo-width;
-    margin: (- $logo-width / 2) 0 0 (- $logo-width / 2);
-  }
-	100% { 
-    @include transform(scale(.1)); 
-    opacity: 0;
-    
-    $logo-width: 18em;
-  	width: $logo-width;
-    margin: (- $logo-width / 2) 0 0 (- $logo-width / 2);
+  100% {
+    background-color: $winAnimEndColor;
   }
 }
 
-@keyframes titles {
-	0% { 
-    top: 100%; 
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-	100% { 
-    top: 20%; 
-    opacity: 0;
-  }
+*{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline-style:none;/*IE*/
+}
+
+.center-box{
+	margin : auto;
+	position: absolute;
+	top : 0;
+	right : 0;
+	bottom : 0;
+	left : 0;
+}
+
+html,body{
+	//background-image: linear-gradient(to bottom,#dddbd1,#d2dbdc);
+	background-color: #d2dbdc;
+	height : 100%;
+	width  : 100%;
+}
+
+.app{
+	@extend .center-box;
+	width : 80%;
+	height : 70%;
+	max-width: 550px;
+	background-color : $app-background-color;
+	box-shadow: 0 5px 30px -5px rgba(0,0,0, .85);
+	border-radius: 10px;
+	.app-container,
+	.app-row{
+		height: $app-row-height;
+	}
+}
+.play-box,.symbol-option{
+	font-family: 'Yesteryear', cursive;
+}
+
+.play-box{
+	border-bottom : 2px solid #fff;
+	border-right : 2px solid #fff;
+	height : $app-row-height / 3;
+	cursor: pointer;
+	position: relative;
+	&.last-right{
+		border-right : none;
+	}
+	&.last-bottom{
+		border-bottom : none;
+	}
+	&.win {
+		-webkit-animation: winAnim .2s ease-out infinite;
+	  -moz-animation:    winAnim .2s ease-out infinite;
+	  -o-animation:      winAnim .2s ease-out infinite;
+	  animation:         winAnim .2s ease-out infinite;
+		animation : winAnim .5s infinite;
+	}
+	.symbol{
+		@extend .center-box;
+		width: 50%;
+		height : 50px;
+		text-align: center;
+		line-height : 50px;
+		font-size: 35px;
+		color : white;
+	}
+}
+
+.modal-content{
+	.content{
+		padding : 15px;
+		text-align: center;
+		margin : 0;
+		&.body{
+			line-height: 2;
+		}
+	}
+	.symbol-options{
+		width: 200px;
+		margin-top: 10px;
+		.symbol-option{
+			&:first-child{
+				margin-right: 10px;
+			}
+			&:last-child{
+				margin-left: 10px;
+			}
+		}
+	}
+	.warning-hr{
+		margin: 0;
+	}
 }
